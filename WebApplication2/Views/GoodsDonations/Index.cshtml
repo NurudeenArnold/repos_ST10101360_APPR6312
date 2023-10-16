@@ -1,0 +1,112 @@
+﻿@model IEnumerable<WebApplication2.Models.GoodsDonations>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Goods Donations:</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-orange">Create New</a>
+    <style>
+        .navbar-brand,
+        .nav-link.custom-text-color {
+            color: #ff6f00 !important;
+            position: relative;
+        }
+
+            .navbar-brand::after {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: #ff6f00;
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+            }
+
+        .btn-orange {
+            background-color: #ff6f00;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+            .btn-orange:hover,
+            .btn-orange:active {
+                background-color: #ff8500;
+                color: white;
+                text-decoration: none;
+            }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 2px solid #ff6f00;
+            padding: 8px;
+            text-align: left;
+            color: #ff6f00; 
+        }
+
+        th {
+            background-color: #ff6f00;
+            color: white;
+        }
+    </style>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfItems)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonorName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfItems)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonorName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.GDonID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.GDonID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.GDonID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
